@@ -14,11 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//セッションを破棄
+	// HttpServletRequest、インスタンスから、リクエストの属性や中身を取得できる
+	// HttpServletRespose、インスタンスに、レスポンスを書き込む
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// セッションを破棄
 		request.getSession().invalidate();
 
-		//ログアウトページを表示
+		// ログアウトページを表示
+		// logoutView.jspへ
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/logoutView.jsp");
 		dispatcher.forward(request, response);
 	}

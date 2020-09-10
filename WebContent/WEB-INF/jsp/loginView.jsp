@@ -18,8 +18,10 @@
 
 <meta name="theme-color" content="#563d7c">
 <style>
-.h4{
+.h4 {
+	
 }
+
 .bd-placeholder-img {
 	font-size: 1.125rem;
 	text-anchor: middle;
@@ -52,11 +54,16 @@
 				<h4 h3 mb-3 font-weight-normal>AcctionLoggerログイン</h4>
 				<div class="form-group">
 
+					<!-- ユーザー名入力 -->
 					ユーザー名<br> <input type="text" class="form-control"
 						name="userid" placeholder="username" required autofocus>
+
+					<!-- パスワード入力 -->
 					パスワード<br> <input type="password" class="form-control"
 						name="password" placeholder="パスワード" required>
 				</div>
+
+				<!-- 新規登録ボタン -->
 				<input type="submit" class="btn btn-secondary btn-block btn-lg"
 					id="login" value="ログイン"></input>
 			</form>

@@ -3,11 +3,17 @@ package model;
 import java.io.Serializable;
 
 public class User implements Serializable {
+	//ユーザーID
 	private String userId;
+	//パスワードハッシュ
 	private String pwdHash;
+	//名前
 	private String name;
+	//住所
 	private String address;
+	//電話番号
 	private String tel;
+	//メールアドレス
 	private String email;
 
 	public User() {

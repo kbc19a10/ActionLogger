@@ -29,15 +29,24 @@
 	<div class="row">
 		<div class="col"></div>
 		<div class="col-8">
+			<%--  AddUser.javaのgetParameterの表示
+				  UserDAOのデータベースから取り出し、AssUser.javaで受け取り、addUserConfirm.jspのformで表示
+			--%>
 			<form class="form-adduser" action="/ActionLogger/adduserconfirm"
 				method="post">
 
 				<h4 h3 mb-3 font-weight-normal>新規ユーザー</h4>
+				<!-- ユーザID追加 -->
 				<div class="mb-3">ユーザーID : ${userToAdd.userId}</div>
+				<!-- パスワードはそのまま -->
 				<div class="mb-3">パスワード : *******</div>
+				<!-- 氏名追加 -->
 				<div class="mb-3">氏名 : ${userToAdd.name}</div>
+				<!-- 住所追加　-->
 				<div class="mb-3">住所 : ${userToAdd.address}</div>
+				<!-- 電話番号追加 -->
 				<div class="mb-3">電話番号 : ${userToAdd.tel}</div>
+				<!-- メールアドレス追加 -->
 				<div class="mb-3">メールアドレス : ${userToAdd.email}</div>
 				<%-- フォームの正当性確認データ --%>
 				<input type="hidden" name="vKey" value="${validationKey.value}">

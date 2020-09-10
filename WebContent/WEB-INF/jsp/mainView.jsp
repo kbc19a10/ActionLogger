@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Dashboard Template · Bootstrap</title>
+<title>Dashboard</title>
 
 <!-- Bootstrap core CSS -->
 <link
@@ -43,8 +43,8 @@
 <body>
 	<nav
 		class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Action
-			Logger</a>
+		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3"
+			href="/ActionLogger">Action Logger</a>
 		<button class="navbar-toggler position-absolute d-md-none collapsed"
 			type="button" data-toggle="collapse" data-target="#sidebarMenu"
 			aria-controls="sidebarMenu" aria-expanded="false"
@@ -67,10 +67,46 @@
 			</nav>
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 				<!-- コンテンツエリアの中身をインポート -->
+
+				<!-- activitiesリンク -->
 				<%
 					if (view != null && view.equals("activities")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/activities.jsp" />
+
+
+				<!-- AddActionFormリンク -->
+				<%
+					} else if (view != null && view.equals("AddActionForm")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/addActionForm.jsp" />
+
+				
+
+				<!-- newPasswordリンク -->
+				<%
+					} else if (view != null && view.equals("newPassword")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/newPassword.jsp" />
+				
+				<!-- newGroupFromリンク -->
+				<%
+					} else if (view != null && view.equals("newGroupFrom")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/newGroupFrom.jsp" />
+
+				<!--newGroup リンク -->
+				<%
+					} else if (view != null && view.equals("newGroup")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/newGroup.jsp" />
+
+				<!--ParticipationGroup リンク -->
+				<%
+					} else if (view != null && view.equals("ParticipationGroup")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/ParticipationGroup.jsp" />
+				<!-- dashboardリンク -->
 				<%
 					} else {
 				%>
@@ -78,6 +114,7 @@
 				<%
 					}
 				%>
+
 			</main>
 		</div>
 	</div>

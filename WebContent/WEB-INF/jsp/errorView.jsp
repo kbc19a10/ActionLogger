@@ -45,9 +45,9 @@
 	<div class="row">
 		<div class="col"></div>
 		<div class="col-８">
+		<!-- AcctionLoggerエラー表示 -->
 			<h4 h3 mb-3 font-weight-normal>AcctionLoggerエラー</h4>
-			${errorData.message}<br>
-			<a href="${errorData.link}">${errorData.linkStr}</a>
+			${errorData.message}<br> <a href="${errorData.link}">${errorData.linkStr}</a>
 
 		</div>
 		<div class="col"></div>

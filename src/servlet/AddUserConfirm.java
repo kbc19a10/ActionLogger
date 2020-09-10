@@ -24,20 +24,23 @@ public class AddUserConfirm extends HttpServlet {
 		super();
 	}
 
+	// HttpServletRequest、インスタンスから、リクエストの属性や中身を取得できる
+	// HttpServletRespose、インスタンスに、レスポンスを書き込む
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 
 		// フォームから送られた確認キーが保存したものと一致するか確認
 		ValidationKey validationKey = (ValidationKey) session.getAttribute("validationKey");
 		if (!req.getParameter("vKey").equals(validationKey.getValue())) {
-			// 一致しなかったので、セッションスコープに保存したキーを破棄し、エラーページに
+			// 一致しなかったので、セッションスコープに保存したキーを破棄し、エラーページを表示
 			session.removeAttribute("validationKey");
-			
-			//表示データを用意する
-			ErrorViewData errorData = new ErrorViewData("問題が発生しました。",
-													"トップに戻る","/ActionLogger/");
+
+			// 表示データを用意する
+			// トップページに戻る
+			ErrorViewData errorData = new ErrorViewData("問題が発生しました。", "トップに戻る", "/ActionLogger/");
 			req.setAttribute("errorData", errorData);
-			
+
+			// クライアントからリクエストを受信し、サーバ上の任意のリソース（サーブレット、HTML ファイル、JSP ファイルなど）に送信するオブジェクトを定義
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorView.jsp");
 			dispatcher.forward(req, resp);
 			return;
@@ -48,9 +51,11 @@ public class AddUserConfirm extends HttpServlet {
 		if (req.getParameter("status").equals("confirmed")) {
 			// セッションスコープに保存していた、DB登録前のユーザー情報を取得
 			User user = (User) session.getAttribute("userToAdd");
+			// DB上のuserテーブルに対応するDAO(検索、追加、更新、削除を担当するクラス)
 			UserDAO userDAO = new UserDAO();
-			userDAO.save(user); // DBに保存
-			// TODO 主キーの重複で保存できなかった場合の処理を追加
+			// DBに保存
+			userDAO.save(user);
+			// 主キーの重複で保存できなかった場合の処理を追加
 
 		}
 		// DBへの保存が成功したものとして、ログインページに遷移

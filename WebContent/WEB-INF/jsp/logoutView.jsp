@@ -54,6 +54,7 @@
 	<div class="row">
 		<div class="col"></div>
 		<div class="col-８">
+		<!-- AcctionLoggerログアウトページ -->
 			<h4 h3 mb-3 font-weight-normal>AcctionLoggerログアウト</h4>
 			ログアウトしました <br> <a href="/ActionLogger/">ログインページへ</a>
 
