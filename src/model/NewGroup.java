@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class NewGroup {
-	private String gid;
+	private String groupid;
 	//グループ名
 	private String gname;
 	//ユーザーID
@@ -38,13 +38,15 @@ public class NewGroup {
 		this.userid = userid;
 	}
 
-	public String getGid() {
-		return gid;
+	public String getGroupid() {
+		return groupid;
 	}
 
-	public void setGid(String gid) {
-		this.gid = gid;
+	public void setGroupid(String groupid) {
+		this.groupid = groupid;
 	}
+
+	
 
 	
 

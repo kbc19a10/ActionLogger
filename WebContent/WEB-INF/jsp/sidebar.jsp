@@ -34,7 +34,7 @@
 	</h6>
 	<ul class="nav flex-column mb-2">
 		<li class="nav-item"><a class="nav-link"
-			href="/ActionLogger/?view=newGroupFrom">グループ作成</a></li>
+			href="/ActionLogger/?view=newGroupFrom">管理グループ作成</a></li>
 	</ul>
 
 	<ul class="nav flex-column mb-2">
@@ -48,12 +48,20 @@
 			aria-label="Add a new report"> <span data-feather="plus-circle"></span>
 		</a>
 	</h6>
-	<ul class="nav flex-column mb-2">
-		<li class="nav-item"><c:forEach var="groupname" items="${gname}">
-				<td><c:out value="　${groupname.gname}" /></br></td>
-			</c:forEach></li>
-	</ul>
 
+
+
+
+	<ul class="nav flex-column mb-2">
+		<c:forEach var="groupname" items="${gname}">
+			<li class="nav-item"><a class="nav-link"
+				href="/ActionLogger/?view=groupMember&groupid=${groupname.groupid }">
+					<c:out value="${groupname.gname }" />
+			</a></li>
+		</c:forEach>
+
+
+	</ul>
 
 	<h6
 		class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -65,8 +73,5 @@
 	<ul class="nav flex-column mb-2">
 		<li class="nav-item"><a class="nav-link"
 			href="/ActionLogger/?view=profileCheck"> プロフィール確認 </a></li>
-		
-
-
 </div>
 

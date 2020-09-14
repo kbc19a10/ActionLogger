@@ -81,7 +81,7 @@ public class GroupDAO {
 			while (rs.next()) {
 				NewGroup group = new NewGroup();
 				// パスワード
-				group.setGid("gid");
+				group.setGroupid(rs.getString("groupid"));
 				group.setGname(rs.getString("gname"));
 				groupList.add(group);
 			}

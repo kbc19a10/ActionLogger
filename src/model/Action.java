@@ -17,6 +17,7 @@ public class Action {
 	
 	//userid 外部制約
 	private String userid;
+	private String name;
 
 	public Action() {
 		super();
@@ -83,5 +84,13 @@ public class Action {
 
 	public void setUserid(String userid) {
 		this.userid = userid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

@@ -81,14 +81,14 @@
 				%>
 				<jsp:include page="/WEB-INF/jsp/addActionForm.jsp" />
 
-				
+
 
 				<!-- newPasswordリンク -->
 				<%
 					} else if (view != null && view.equals("newPassword")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/newPassword.jsp" />
-				
+
 				<!-- newGroupFromリンク -->
 				<%
 					} else if (view != null && view.equals("newGroupFrom")) {
@@ -106,6 +106,12 @@
 					} else if (view != null && view.equals("ParticipationGroup")) {
 				%>
 				<jsp:include page="/WEB-INF/jsp/ParticipationGroup.jsp" />
+
+				<!--ParticipationGroup リンク -->
+				<%
+					} else if (view != null && view.equals("groupMember")) {
+				%>
+				<jsp:include page="/WEB-INF/jsp/groupMember.jsp" />
 				<!-- dashboardリンク -->
 				<%
 					} else {

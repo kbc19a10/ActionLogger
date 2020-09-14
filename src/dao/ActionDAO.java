@@ -22,9 +22,9 @@ import model.User;
 //actionの検索、追加、更新、削除を担当
 public class ActionDAO extends HttpServlet {
 	// データベース接続に使用する情報
-	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/h2db/actionlogger";
-	private final String DB_USER = "sa";
-	private final String DB_PASS = "";
+	private final static String JDBC_URL = "jdbc:h2:tcp://localhost/~/h2db/actionlogger";
+	private final static String DB_USER = "sa";
+	private final static String DB_PASS = "";
 
 	public ActionDAO() {
 		super();
@@ -108,6 +108,101 @@ public class ActionDAO extends HttpServlet {
 			return null;
 		}
 		return actionList;
+	}
+
+	// 管理グループのメンバー表(全部表示)
+	public List<Action> memberAll(String groupid) {
+		List<Action> memberactionList = new ArrayList<>();
+
+		// データベース接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// INSERT文の準備(idは自動連番なので指定しなくてよい）
+			// 引数文[？]追加、
+			String sql = "SELECT * FROM BELONGS as B , ACTION as A , USER as U  " + "where  A.userid = B.userid  "
+					+ "and A.userid = U.userid and  B.GROUPID  = ?";
+
+			// SQLをDBに届けるPrepareStatementインスタンスを取得
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, groupid);
+
+			// 結果取得
+			ResultSet rs = pStmt.executeQuery();
+
+			while (rs.next()) {
+				Action action = new Action();
+				action.setUserid(rs.getString("userid"));
+
+				action.setName(rs.getString("name"));
+				// ユーザID
+				action.setDay(rs.getString("day"));
+				// パスワード
+				action.setStarttime(rs.getString("starttime"));
+				// 名前
+				action.setFinishtime(rs.getString("finishtime"));
+				// 住所
+				action.setPlace(rs.getString("place"));
+				// 電話番号
+				action.setReason(rs.getString("reason"));
+				// メールアドレス
+				action.setRemark(rs.getString("remark"));
+
+				memberactionList.add(action);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return memberactionList;
+	}
+
+	// 管理グループのメンバー表（検索）
+	public static List<Action> search(String day ,String groupid) {
+		List<Action> serchList = new ArrayList<>();
+
+		// データベース接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// INSERT文の準備(idは自動連番なので指定しなくてよい）
+			// 引数文[？]追加、
+			String sql = "SELECT * FROM ACTION as A , BELONGS as B , USER as U " + 
+					"WHERE A.USERID = B.USERID and A.USERID = U.USERID and (A.DAY like ?) and B.GROUPID = ? ";
+
+			// SQLをDBに届けるPrepareStatementインスタンスを取得
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, "%" + day + "%");
+			pStmt.setString(2, groupid);
+
+			// 結果取得
+			ResultSet rs = pStmt.executeQuery();
+
+			while (rs.next()) {
+				Action action = new Action();
+				action.setUserid(rs.getString("userid"));
+
+				action.setName(rs.getString("name"));
+				// ユーザID
+				action.setDay(rs.getString("day"));
+				// パスワード
+				action.setStarttime(rs.getString("starttime"));
+				// 名前
+				action.setFinishtime(rs.getString("finishtime"));
+				// 住所
+				action.setPlace(rs.getString("place"));
+				// 電話番号
+				action.setReason(rs.getString("reason"));
+				// メールアドレス
+				action.setRemark(rs.getString("remark"));
+
+				serchList.add(action);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return serchList;
 	}
 
 }
